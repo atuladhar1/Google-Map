@@ -1,16 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map</title>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <style>
+        #map {
+            height: 100%;
+            z-index: 2;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: rgb(185, 159, 159);
+        }
+        
+        span {
+            position: fixed;
+            z-index: 10;
+        }
+        
+        h2 {
+            color: blueviolet;
+            font-size: 40px;
+            font-family: 'Oswald', cursive;
+            font-weight: bold;
+            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
-    klasdfafdsf
-    
-
+    <span><h2>Map access</h2></span>
+    <div id="map"></div>
 </body>
+<footer>
+    <!-- Script to initialize the google maps api -->
+    <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 31.798257,
+                    lng: -85.954404
+                },
+                zoom: 13
+            });
+        }
+    </script>
+    <!-- Calling google maps api -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBsnC5fxfaTECxo5ZZYixSuvf9JTk8amY&callback=initMap" async defer></script>
+</footer>
 
 </html>
