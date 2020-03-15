@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <head>
     <title>Simple Map</title>
@@ -23,10 +24,6 @@
             padding: 0;
             text-align: center;
             background-color: rgb(185, 159, 159);
-        }
-        
-        span {
-            z-index: 10;
         }
         
         h2 {
@@ -58,9 +55,7 @@
 
 <body>
     <div id="head">
-        <span id="span">
         <h2>Map access</h2>
-    </span>
         <button id="NA">North America</button>
         <button id="SA">South America</button>
         <button id="EU">Europe</button>
@@ -69,85 +64,90 @@
         <button id="AU">Australia</button>
     </div>
     <div id="map"></div>
-</body>
-<footer>
-    <!-- Script to initialize the google maps api -->
-    <script>
-        var map;
+    <footer>
+        <!-- Script to initialize the google maps api -->
+        <script>
+            var map;
 
-        function initMap() {
-            //Initialize the maps
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 41.8823,
-                    lng: -87.67964
-                },
-                zoom: 4.5
-            });
-            // Get Data from the JSON and put mar
-            var json = $.getJSON("https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json", function(data) {
-                for (var i = 0; i < data.length; i++) {
-                    var lat = parseFloat(data[i].lat);
-                    var lon = parseFloat(data[i].lon);
-                    var latlon = new google.maps.LatLng(lat, lon);
-                    var marker = new google.maps.Marker({
-                        position: latlon,
-                        icon: "plane.png",
-                        map: map
+            function initMap() {
+                //Initialize the maps
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: 41.8823,
+                        lng: -87.67964
+                    },
+                    zoom: 4.5
+                });
+                // Get Data from the JSON and put mar
+                var json = $.getJSON("https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json", function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var lat = parseFloat(data[i].lat);
+                        var lon = parseFloat(data[i].lon);
+                        var name = data[i].name;
+                        var iata = data[i].iata;
+                        var latlon = new google.maps.LatLng(lat, lon);
+                        var marker = new google.maps.Marker({
+                            position: latlon,
+                            icon: "plane.png",
+                            map: map,
+                            title: name + ", " + iata
+                        });
+
+                    }
+                });
+                // Button functions sets Specific centers and zooms for each of the continents
+                $("#AU").click(function() {
+                    map.setCenter({
+                        lat: -25.70267,
+                        lng: 133.88133
                     });
-                }
-            });
-            // Button functions sets Specific centers and zooms for each of the continents
-            $("#AU").click(function() {
-                map.setCenter({
-                    lat: -25.70267,
-                    lng: 133.88133
+                    map.setZoom(5)
                 });
-                map.setZoom(5)
-            });
-            $("#NA").click(function() {
-                map.setCenter({
-                    lat: 48.37118,
-                    lng: -100.001
+                $("#NA").click(function() {
+                    map.setCenter({
+                        lat: 48.37118,
+                        lng: -100.001
+                    });
+                    map.setZoom(4.5)
                 });
-                map.setZoom(4.5)
-            });
-            $("#AF").click(function() {
-                map.setCenter({
-                    lat: 2.2927,
-                    lng: 15.6882
+                $("#AF").click(function() {
+                    map.setCenter({
+                        lat: 2.2927,
+                        lng: 15.6882
+                    });
+                    map.setZoom(4)
                 });
-                map.setZoom(4)
-            });
-            $("#AS").click(function() {
-                map.setCenter({
-                    lat: 40,
-                    lng: 94
+                $("#AS").click(function() {
+                    map.setCenter({
+                        lat: 40,
+                        lng: 94
+                    });
+                    map.setZoom(4)
                 });
-                map.setZoom(4)
-            });
-            $("#EU").click(function() {
-                map.setCenter({
-                    lat: 53.69062,
-                    lng: 25.2698
+                $("#EU").click(function() {
+                    map.setCenter({
+                        lat: 53.69062,
+                        lng: 25.2698
+                    });
+                    map.setZoom(4.5)
                 });
-                map.setZoom(4.5)
-            });
-            $("#SA").click(function() {
-                map.setCenter({
-                    lat: -15.59901,
-                    lng: -56.0949
+                $("#SA").click(function() {
+                    map.setCenter({
+                        lat: -15.59901,
+                        lng: -56.0949
+                    });
+                    map.setZoom(4)
                 });
-                map.setZoom(4)
-            });
 
-        };
-    </script>
-    <!-- Calling google maps api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBsnC5fxfaTECxo5ZZYixSuvf9JTk8amY&callback=initMap" async defer></script>
-    <script>
-    </script>
+            };
+        </script>
+        <!-- Calling google maps api -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBsnC5fxfaTECxo5ZZYixSuvf9JTk8amY&callback=initMap" async defer></script>
+        <script>
+        </script>
 
-</footer>
+    </footer>
+</body>
 
 </html>
