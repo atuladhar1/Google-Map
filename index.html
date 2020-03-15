@@ -5,7 +5,11 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <!-- Font from Google Api linked -->
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <!-- JQUERY import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- CSS Style for elements in the body -->
     <style>
         #map {
             height: 100%;
@@ -50,11 +54,25 @@
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
-                    lat: 31.798257,
-                    lng: -85.954404
+                    lat: 41.8823,
+                    lng: -87.67964
                 },
-                zoom: 13
+                zoom: 4.5
             });
+
+            var json = $.getJSON("https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json", function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    var lat = parseFloat(data[i].lat);
+                    var lon = parseFloat(data[i].lon);
+                    var latlon = new google.maps.LatLng(lat, lon);
+                    var marker = new google.maps.Marker({
+                        position: latlon,
+                        icon: "plane.png",
+                        map: map
+                    })
+                }
+            });
+
         }
     </script>
     <!-- Calling google maps api -->
