@@ -89,44 +89,49 @@
                     });
                 }
             });
-            // Button functions
+            // Button functions sets Specific centers and zooms for each of the continents
             $("#AU").click(function() {
                 map.setCenter({
-                    lat: -34,
-                    lng: 151
+                    lat: -25.70267,
+                    lng: 133.88133
                 });
+                map.setZoom(5)
             });
             $("#NA").click(function() {
                 map.setCenter({
                     lat: 48.37118,
                     lng: -100.001
                 });
+                map.setZoom(4.5)
             });
             $("#AF").click(function() {
                 map.setCenter({
                     lat: 2.2927,
                     lng: 15.6882
                 });
+                map.setZoom(4)
             });
             $("#AS").click(function() {
                 map.setCenter({
-                    lat: 51,
+                    lat: 40,
                     lng: 94
                 });
+                map.setZoom(4)
             });
             $("#EU").click(function() {
                 map.setCenter({
-                    lat: 54.69062,
+                    lat: 53.69062,
                     lng: 25.2698
                 });
+                map.setZoom(4.5)
             });
             $("#SA").click(function() {
                 map.setCenter({
                     lat: -15.59901,
                     lng: -56.0949
                 });
+                map.setZoom(4)
             });
-
 
         };
     </script>
