@@ -31,7 +31,7 @@
         
         h2 {
             color: black;
-            font-size: 40px;
+            font-size: 45px;
             font-family: 'Oswald', cursive;
             font-weight: bold;
             margin: 0;
@@ -43,6 +43,14 @@
             position: fixed;
             z-index: 13;
             width: 100%;
+        }
+        
+        button {
+            color: white;
+            background-color: darkgray;
+            margin: 0 15px;
+            border: 0px;
+            font-size: large;
         }
     </style>
 
@@ -74,7 +82,7 @@
                     lat: 41.8823,
                     lng: -87.67964
                 },
-                zoom: 3
+                zoom: 4.5
             });
             // Get Data from the JSON and put mar
             var json = $.getJSON("https://raw.githubusercontent.com/jbrooksuk/JSON-Airports/master/airports.json", function(data) {
